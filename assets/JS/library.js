@@ -57,7 +57,7 @@ const novel_2= new NovelBook("Si Putih","tereliye", "2004");
 LIST_OF_BOOK.push(novel_2.getBook());
 
 
-const novel_3= new NovelBook("Cinta itu luka","Evan Kurniawan", "2002");
+const novel_3= new NovelBook("Cinta itu kamu","Ariiq afrahtama", "2003");
 LIST_OF_BOOK.push(novel_3.getBook());
 
 const biografi_1= new BiografiBook("Al Wafa | siroh nabawi","Salahuddin as-suyuthi", "1998");
