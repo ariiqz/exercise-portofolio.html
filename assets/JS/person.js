@@ -1,60 +1,112 @@
 const persons = [];
 
 class Person {
-    constructor(name, gender) {
+    constructor(
+        name,
+        gender
+    ) {
         this.name = name;
+        // 1. Tambahkan di constructor untuk set value genger
         this.gender = gender;
     }
 
-    setTitle(title) {
-        if (this.gender === "Lelaki") {
-            this.name = title + this.name;
-        } else if (this.gender === "Perempuan") {
-            this.name = title + this.name;
+    setName(name) {
+        this.name = name;
+        return this;
+    }
+
+    setGender(gender) {
+        const genders = ["L", "P"];
+        if (genders.includes(gender)) {
+            this.gender = gender;
+        } else {
+            console.error("Maaf gender yang di imput salah");
         }
+
+        return this;
+    }
+
+    setTitle() {
+        // 2. tambahkan argument untuk set title, jika gender L = "Tuan " apabila P = "Nyonya", maka nilai 
+            // name nya menjadi contoh, 
+            // name = Tuan Jhon
+            (this.gender === "L") ? this.name = `Tuan ${this.name}` : this.name =`Nyonya ${this.name}`;
     }
 
     static find(name) {
-        return persons.find(person => person.name === name);
+        // 6. tambahkan argument untuk pungsi pencarian dari array persons berdasarkan nama.
+        return persons.find(item => item.name = name)
     } 
 }
-const person1 = new Person("Budi", "Lelaki");
-person1.setTitle("Mr. ");
-persons.push(person1);
 
-const person2 = new Person("Jane Smith", "Perempuan");
-person2.setTitle("Ms. ");
-persons.push(person2);
+// 3. buat kan 2 object person
+    // 1 person laki laki
+    // panggil funsi setTittle dari object person 
+    const person1 = new Person("Sopo", "L");
+    person1.setTitle();
 
-console.log(persons);
+    //|key|value|
+    //|name|Hendar|
+    //|gender|L|
 
-const foundPerson = Person.find("Mr. Budi");
-console.log(foundPerson);
+    console.log(person1.name);
+    console.log(person1["name"]);
 
-// Latihan OOP
+    // 1 person perempuan
+    // panggil funsi setTittle dari object person 
+    const person2 = new Person("Nabila", "P");
+    person2.setTitle();
 
-class Student extends Person {
-  constructor(name, gender) {
-      super(name, gender);
-      this.class = ""; 
-      this.school = ""; 
+    const person3 = new Person();
+    person3.name = "Baon";
+    person3.gender = "L";
+    person3.setTitle();
+
+    // Builder Pattern
+    const person4 = new Person();
+    person4.setName("Senja").setGender("L").setTitle();
+
+// 4. setiap object person nya ditambahkan ke array object persons
+    persons.push(person1);
+    persons.push(person2);
+    persons.push(person3);
+    persons.push(person4);
+
+// 5. tampilkan object persons.
+    console.log("List Array Person : ");
+    console.log(persons);
+
+// 7. panggil fungsi Person.find(name) dan muncul kan object person berdasarkan nama yang di input.
+    const personFind = Person.find("Baon");
+
+    console.log("Hasil Pencarian dengan inputan name : ");
+    console.log(personFind);
+
+    // Latihan OOP
+  
+  class Student extends Person {
+      constructor(name, age) {
+          super(name, age);
+          this.class = null; 
+          this.school = null;
+      }
+  
+      setClass(param) {
+          this.class = param;
+          return this;
+      }
+  
+      setSekolah(param) {
+          this.school = param;
+          return this;
+      }
   }
-
-  setClass(className) {
-      this.class = className;
-      return this; 
-  }
-
-  setSchool(schoolName) {
-      this.school = schoolName;
-      return this;
-  }
-}
-
-const student = 
-new Student("sopo", "L")
-  .setClass("2th grade")
-  .setSchool("SMA");
-
-console.log(student);
-
+  
+  // Set class with the builder pattern
+  const student = new Student("Sopo", 20)
+      .setClass("IPA")
+      .setSekolah("SMA 4");
+  
+  // Display student
+  console.log(student);
+  
